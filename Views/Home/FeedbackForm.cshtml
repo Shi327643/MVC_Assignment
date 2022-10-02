@@ -1,0 +1,71 @@
+﻿@model MVC_Assignment.Models.Feedback
+@{
+    ViewBag.Title = "FeedbackForm";
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>                    @*We are doing this to validate the field at client side*@
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<h2>FeedbackForm</h2>
+
+@using (Html.BeginForm("SuccessFullForm", "Home", FormMethod.Post))
+                                                                  
+{
+    @Html.ValidationSummary()
+<table class="table table-striped">
+    <tr>
+        <td>@Html.LabelFor(m => m.StudentName)</td>
+        <td>
+            @Html.TextBoxFor(m => m.StudentName, new { @class = "form-control" })
+            <span class="text-danger">@Html.ValidationMessageFor(m => m.StudentName)</span>
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(m => m.Gender)</td>
+        <td>
+            Male @Html.RadioButtonFor(m => m.Gender, "Male")
+            <span class="text-danger">@Html.ValidationMessageFor(m => m.Gender)</span>
+            &nbsp;
+
+            Female @Html.RadioButtonFor(m => m.Gender, "Female")
+            <span class="text-danger">@Html.ValidationMessageFor(m => m.Gender)</span>
+
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(m => m.Courses)</td>
+        <td>
+            @Html.DropDownListFor(m => m.Courses, new SelectList(ViewBag.list), "----------Select Your Courses---", new { @class = "form-control" })
+            <span class="text-danger">@Html.ValidationMessageFor(m => m.Courses)</span>
+        </td>
+    </tr>
+    <tr>
+        <td>@Html.LabelFor(m => m.Ratings)</td>
+        <td>
+            Good @Html.RadioButtonFor(m => m.Ratings, "Good")
+
+            &nbsp;
+
+            Average @Html.RadioButtonFor(m => m.Ratings, "Average")
+
+            &nbsp;
+
+            Poor @Html.RadioButtonFor(m => m.Ratings, "Poor")
+            <span class="text-danger">@Html.ValidationMessageFor(m => m.Ratings)</span>
+
+        </td>
+    </tr>
+    <td>@Html.LabelFor(m => m.Suggestions)</td>
+    <td>
+        @Html.TextAreaFor(m => m.Suggestions, new { @class = "form-control" })
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.Suggestions)</span>
+    </td>
+    <tr>
+        <td colspan="2" style="text-align:center">
+            <input type="submit" class="btn btn-primary" />
+        </td>
+    </tr>
+</table>
+
+}
+
